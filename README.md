@@ -14,8 +14,8 @@ Examples of using the tools in EStools can be found in test.py
 
 You need to
 
-$ module purge
-$ module load python3.7-anaconda/2020.02
-$ export PYTHONPATH=/sw/arcts/centos7/EStools/lib/python3.7/site-packages
-$ export PYTHONPATH=$PYTHONPATH:/sw/arcts/centos7/EStools/examples
-$ python3 /sw/arcts/centos7/EStools/examples/test.py
+    $ module purge
+    $ module load python3.7-anaconda/2020.02
+    $ export PYTHONPATH=/sw/arcts/centos7/EStools/lib/python3.7/site-packages
+    $ export PYTHONPATH=$PYTHONPATH:/sw/arcts/centos7/EStools/examples
+    $ python3 /sw/arcts/centos7/EStools/examples/test.py
