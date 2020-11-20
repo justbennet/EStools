@@ -1,5 +1,13 @@
 #!/usr/bin/env python3
 
+'''Functions for querying the ARCTS Elasticsearch database
+
+These are meant to be run in the ARC-TS environment at the University
+of Michigan. They assume that the Elasticsearch Python libraries are
+installed and available in your `PYTHONPATH`.
+
+'''
+
 from elasticsearch.connection import create_ssl_context
 from elasticsearch import Elasticsearch, helpers, exceptions
 import ssl
@@ -15,22 +23,25 @@ ssl_context.check_hostname = True
 client = Elasticsearch(['es.arc-ts.umich.edu'], scheme='https',
                        port='443', ssl_context=ssl_context)
 
-def es_info():
 
+def es_info():
+    '''Prints information about the Elasticsearch server.'''
     pp = pprint.PrettyPrinter(indent=4)
     pp.pprint(client.info())
 
 
 def get_syslog_index_names(clustername = 'greatlakes'):
-
-
+    '''Gets the name of the syslog indexes available from the Elasticsearch
+    server.
+    '''
     return(sorted(client.indices.get_alias(
         'logstash-hpc-' + clustername + '-sysloglogs*')))
 
 
 def get_module_usage(index):
-
-# Define the query to be used
+    '''Gets the ModuleUsageTracking entries from the Elasticsearch index
+    provided.  Returns a list of matching entries.
+    '''
 
     queryParam = {
         "_source": [ "host", "module", "path" ],
